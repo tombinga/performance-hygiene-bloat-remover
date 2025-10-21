@@ -76,6 +76,7 @@ if (!class_exists(__NAMESPACE__ . '\\Plugin')):
         $admin = new \PerformanceHygiene\BloatRemover\Admin\SettingsPage();
         $admin->register();
         add_filter('plugin_action_links_' . plugin_basename(__FILE__), array('PerformanceHygiene\\BloatRemover\\Admin\\SettingsPage', 'plugin_action_links'));
+        \PerformanceHygiene\BloatRemover\Updates::init();
       }
 
       add_filter('phbr/heartbeat_interval', array('PerformanceHygiene\\BloatRemover\\Settings\\Repository', 'heartbeat_interval'));

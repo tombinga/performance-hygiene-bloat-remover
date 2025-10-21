@@ -39,6 +39,32 @@ A comprehensive, modular functionality plugin to safely remove common WordPress 
 2. Activate “Performance Hygiene – Bloat Remover” in Plugins.
 3. Go to **Settings → Performance Hygiene** to configure.
 
+## Updates (Plugin Update Checker)
+- Place the library at `wp-content/plugins/performance-hygiene-bloat-remover/vendor/plugin-update-checker/`.
+  - You can copy it from `wp-content/plugins/singleplatform-menu/vendor/plugin-update-checker/`.
+- Enable updates by providing a repo URL via constant or filter:
+
+```php
+// In wp-config.php (or a must-use plugin):
+define('PHBR_UPDATE_REPO', 'https://github.com/your-org/performance-hygiene-bloat-remover/');
+// Optional:
+define('PHBR_UPDATE_BRANCH', 'main'); // default 'main'
+define('PHBR_UPDATE_TOKEN', 'ghp_xxx'); // for private repos
+```
+
+Or via filter:
+
+```php
+add_filter('phbr/update_repo', function ($repo) {
+    return 'https://github.com/your-org/performance-hygiene-bloat-remover/';
+});
+```
+
+Notes:
+- Update checks only run in admin.
+- Release assets are preferred when available.
+- If no repo is configured or the library is missing, the updater is skipped silently.
+
 ## Settings
 - Stored as a single option: `phbr_settings` (autoloaded)
 - UI sections:
